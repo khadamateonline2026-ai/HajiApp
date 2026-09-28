@@ -1,0 +1,19 @@
+{
+  "name": "حساب من",
+  "short_name": "حساب من",
+  "description": "حسابداری ساده خرید، فروش و گدام برای کسب‌وکار کوچک",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#D7E7E2",
+  "theme_color": "#147A6A",
+  "dir": "rtl",
+  "lang": "fa",
+  "icons": [
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
