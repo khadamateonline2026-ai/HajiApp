@@ -1,26 +1,14 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
-import { Noto_Naskh_Arabic, Noto_Sans_Arabic, Vazirmatn } from "next/font/google";
+// فونت‌ها از پکیج‌های npm و داخل خودِ پروژه سرو می‌شوند (self-hosted).
+// قبلاً از next/font/google استفاده می‌شد که در زمان build فایل‌ها را از
+// fonts.googleapis.com دانلود می‌کرد و اگر بیلدسرور به گوگل دسترسی نداشت،
+// کل بیلد ورسل شکست می‌خورد.
+import "@fontsource-variable/noto-naskh-arabic";
+import "@fontsource-variable/noto-sans-arabic";
+import "@fontsource-variable/vazirmatn";
 import { DEFAULT_SETTINGS, getSettings } from "@/lib/queries";
 import "./globals.css";
-
-const vazir = Vazirmatn({
-  subsets: ["arabic", "latin"],
-  variable: "--font-vazir",
-  display: "swap",
-});
-
-const notoSans = Noto_Sans_Arabic({
-  subsets: ["arabic"],
-  variable: "--font-noto-sans",
-  display: "swap",
-});
-
-const notoNaskh = Noto_Naskh_Arabic({
-  subsets: ["arabic"],
-  variable: "--font-noto-naskh",
-  display: "swap",
-});
 
 export const dynamic = "force-dynamic";
 
@@ -57,10 +45,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 
   const fontFamily =
     settings.fontFamily === "noto-sans"
-      ? "var(--font-noto-sans), Tahoma, sans-serif"
+      ? '"Noto Sans Arabic Variable", Tahoma, sans-serif'
       : settings.fontFamily === "noto-naskh"
-        ? "var(--font-noto-naskh), Tahoma, sans-serif"
-        : "var(--font-vazir), Tahoma, sans-serif";
+        ? '"Noto Naskh Arabic Variable", Tahoma, sans-serif'
+        : '"Vazirmatn Variable", Tahoma, sans-serif';
 
   return (
     <html
@@ -69,7 +57,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       data-theme={settings.themeMode}
       data-size={settings.fontSize}
       data-font={settings.fontFamily}
-      className={`${vazir.variable} ${notoSans.variable} ${notoNaskh.variable}`}
       style={
         {
           "--primary": settings.primaryColor,
